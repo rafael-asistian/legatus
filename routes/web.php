@@ -13,7 +13,7 @@ Route::get('/login', function () {
 
 Route::post('/login', function () {
     // Placeholder for login logic
-    return redirect('/');
+    return redirect()->route('clients.index');
 });
 
 Route::resource('clients', \App\Http\Controllers\ClientController::class)->only(['index']);
