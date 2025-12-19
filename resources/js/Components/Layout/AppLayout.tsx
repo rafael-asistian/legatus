@@ -9,7 +9,7 @@ interface AppLayoutProps extends PropsWithChildren {
 
 export default function AppLayout({ children, userName, userAvatar }: AppLayoutProps) {
     return (
-        <div className="min-h-screen bg-gray-50 flex">
+        <div className="min-h-screen bg-neutral-50 flex">
             <Sidebar />
             <div className="flex-1 flex flex-col">
                 <Header userName={userName} userAvatar={userAvatar} />
@@ -20,3 +20,4 @@ export default function AppLayout({ children, userName, userAvatar }: AppLayoutP
         </div>
     );
 }
+

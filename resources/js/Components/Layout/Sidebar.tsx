@@ -5,7 +5,8 @@ import {
     FileText,
     BarChart3,
     Settings,
-    Briefcase
+    Briefcase,
+    Gavel
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -17,9 +18,10 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-    { href: '/clients', icon: <Home className="w-5 h-5" />, label: 'Inicio' },
+    { href: '/home', icon: <Home className="w-5 h-5" />, label: 'Inicio' },
     { href: '/clients', icon: <Users className="w-5 h-5" />, label: 'Clientes' },
-    { href: '#', icon: <Briefcase className="w-5 h-5" />, label: 'Casos' },
+    { href: '/cases', icon: <Briefcase className="w-5 h-5" />, label: 'Casos' },
+    { href: '/juicios', icon: <Gavel className="w-5 h-5" />, label: 'Juicios' },
     { href: '#', icon: <FileText className="w-5 h-5" />, label: 'Documentos' },
     { href: '#', icon: <BarChart3 className="w-5 h-5" />, label: 'Reportes' },
 ];
@@ -28,11 +30,11 @@ export default function Sidebar() {
     const { url } = usePage();
 
     return (
-        <aside className="w-14 bg-white border-r flex flex-col items-center py-4 gap-1">
+        <aside className="w-14 bg-card border-r border-border flex flex-col items-center py-4 gap-1">
             {/* Logo */}
             <div className="mb-4">
                 <Link href="/" className="flex items-center justify-center w-8 h-8">
-                    <span className="text-pink-600 font-bold text-xl">A</span>
+                    <span className="text-neutral-700 font-semibold text-xl">L</span>
                 </Link>
             </div>
 
@@ -45,10 +47,10 @@ export default function Sidebar() {
                             key={index}
                             href={item.href}
                             className={cn(
-                                "w-10 h-10 flex items-center justify-center rounded-lg transition-colors",
+                                "w-10 h-10 flex items-center justify-center rounded-lg transition-colors duration-150",
                                 isActive
-                                    ? "bg-gray-100 text-gray-900"
-                                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                                    ? "bg-neutral-100 text-neutral-900"
+                                    : "text-neutral-400 hover:bg-neutral-50 hover:text-neutral-700"
                             )}
                             title={item.label}
                         >
@@ -61,8 +63,13 @@ export default function Sidebar() {
             {/* Settings at bottom */}
             <div className="mt-auto">
                 <Link
-                    href="#"
-                    className="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                    href="/settings/company"
+                    className={cn(
+                        "w-10 h-10 flex items-center justify-center rounded-lg transition-colors duration-150",
+                        url.startsWith('/settings')
+                            ? "bg-neutral-100 text-neutral-900"
+                            : "text-neutral-400 hover:bg-neutral-50 hover:text-neutral-700"
+                    )}
                     title="Configuración"
                 >
                     <Settings className="w-5 h-5" />
